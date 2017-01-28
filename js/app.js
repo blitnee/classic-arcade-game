@@ -33,7 +33,6 @@ var Player = function(x,y) {
 Player.prototype.update = function(dt) {
     this.checkCollisions();
     if (this.y <= 50) {
-        console.log('win');
         this.reset();
     }
 };
@@ -72,7 +71,6 @@ Player.prototype.handleInput = function(allowedKeys) {
 Player.prototype.reset = function () {
     this.x = 200;
     this.y = 395;
-    console.log('reset!');
 };
 
 Player.prototype.checkCollisions = function() {
@@ -81,7 +79,6 @@ for (var i = 0; i < allEnemies.length; i++) {
         && this.x + this.width > allEnemies[i].x
         && this.y < allEnemies[i].y + allEnemies[i].height 
         && this.y + this.height > allEnemies[i].y) {
-        console.log('Collision!');
         this.reset();
         this.score = 0;
         ctx.clearRect(150, 550, 200, 500);
