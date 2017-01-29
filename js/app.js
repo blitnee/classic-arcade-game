@@ -32,7 +32,11 @@ var Player = function(x,y) {
 
 Player.prototype.update = function(dt) {
     this.checkCollisions();
-    if (this.y <= 50) {
+    if (this.y <= 50) {     // Creates finish line, adds 100pts to score
+        this.score += 100;
+        ctx.clearRect(150, 550, 200, 500);
+        ctx.font = "15px Georgia";
+        ctx.fillText("Score:" + " " + player.score, 215, 600);
         this.reset();
     }
 };
@@ -55,14 +59,6 @@ Player.prototype.handleInput = function(allowedKeys) {
         this.y += 80;
     }  
 
-    // Creates finish line, adds 100 pts to player score
-    if (this.y <= 50) {
-        this.score += 100;
-        ctx.clearRect(150, 550, 200, 500);
-        ctx.font = "15px Georgia";
-        ctx.fillText("Score:" + " " + player.score, 215, 600);
-    }
-
     // Alerts player that they have won the game, restarts
     if(this.score === 300) {
         alert("You win! Play again?");
@@ -75,7 +71,7 @@ Player.prototype.handleInput = function(allowedKeys) {
  * position. This is used in the 'checkCollisions' and 
  * and 'update' functions.
  */
-Player.prototype.reset = function () {
+Player.prototype.reset = function() {
     this.x = 200;
     this.y = 395;
 };
@@ -86,19 +82,18 @@ Player.prototype.reset = function () {
  * enemy object bounds.
  */
 Player.prototype.checkCollisions = function() {
-for (var i = 0; i < allEnemies.length; i++) {
-    if (this.x < allEnemies[i].x + allEnemies[i].width 
-        && this.x + this.width > allEnemies[i].x
-        && this.y < allEnemies[i].y + allEnemies[i].height 
-        && this.y + this.height > allEnemies[i].y) {
-        this.reset();     // player is moved back to start on collision
-        this.score = 0;   // player score is restarted at 0
-        
-        // Displays player score
-        ctx.clearRect(150, 550, 200, 500);
-        ctx.font = "15px Georgia";
-        ctx.fillText("Score:" + " " + player.score, 215, 600);}
-    }
+    for (var i = 0; i < allEnemies.length; i++) {
+        if (this.x < allEnemies[i].x + allEnemies[i].width 
+            && this.x + this.width > allEnemies[i].x
+            && this.y < allEnemies[i].y + allEnemies[i].height 
+            && this.y + this.height > allEnemies[i].y) {
+            this.reset();     // player is moved back to start on collision
+            this.score = 0;   // player score is restarted at 0
+            // Displays player score
+            ctx.clearRect(150, 550, 200, 500);
+            ctx.font = "15px Georgia";
+            ctx.fillText("Score:" + " " + player.score, 215, 600);}
+        }
 };
 
 var player = new Player();
