@@ -8,11 +8,11 @@ var Enemy = function(x,y) {
 };
 
 Enemy.prototype.update = function(dt) {
-    if(this.x < 500) {    //off canvas enemy end point
+    if(this.x < 500) {    // Off canvas enemy end point
         this.x = this.x +(this.speed * dt);
     }
     else {
-        this.x = -100   //off canvas enemy origin point
+        this.x = -100   // Off canvas enemy origin point
     }
 };
 
@@ -27,7 +27,9 @@ var Player = function(x,y) {
     this.width = 10;     // Variable to simulate collision
     this.height = 30;    // Variable to simulate collision
     this.score = 0;      // Starts player score at 0
-    alert('Move your hero using the arrow keys. Avoid the bugs! Collect 300 points to win the game. Good Luck!');
+    alert('Move your hero using the arrow keys.'+
+          ' Avoid the bugs! Collect 300 points to'+
+          ' win the game. Good Luck!');
 };
 
 Player.prototype.update = function(dt) {
@@ -57,7 +59,7 @@ Player.prototype.handleInput = function(allowedKeys) {
     }
     if (allowedKeys === 'down' && this.y < 350) {
         this.y += 80;
-    }  
+    }
 
     // Alerts player that they have won the game, restarts
     if(this.score === 300) {
@@ -68,7 +70,7 @@ Player.prototype.handleInput = function(allowedKeys) {
 
 /*
  * reset jumps the player back to their starting
- * position. This is used in the 'checkCollisions' and 
+ * position. This is used in the 'checkCollisions' and
  * and 'update' functions.
  */
 Player.prototype.reset = function() {
@@ -78,21 +80,22 @@ Player.prototype.reset = function() {
 
 /*
  * checkCollions loops through each enemy position,
- * validating if the player position is within 
+ * validating if the player position is within
  * enemy object bounds.
  */
 Player.prototype.checkCollisions = function() {
     for (var i = 0; i < allEnemies.length; i++) {
-        if (this.x < allEnemies[i].x + allEnemies[i].width 
+        if (this.x < allEnemies[i].x + allEnemies[i].width
             && this.x + this.width > allEnemies[i].x
-            && this.y < allEnemies[i].y + allEnemies[i].height 
+            && this.y < allEnemies[i].y + allEnemies[i].height
             && this.y + this.height > allEnemies[i].y) {
             this.reset();     // player is moved back to start on collision
             this.score = 0;   // player score is restarted at 0
             // Displays player score
             ctx.clearRect(150, 550, 200, 500);
             ctx.font = "15px Georgia";
-            ctx.fillText("Score:" + " " + player.score, 215, 600);}
+            ctx.fillText("Score:" + " " + player.score, 215, 600);
+            }
         }
 };
 
@@ -103,7 +106,7 @@ var player = new Player();
  * visuals on screen. Each enemy has a unique y position.
  */
 var allEnemies = [
-    new Enemy(-100,60),  
+    new Enemy(-100,60),
     new Enemy(-100,140),
     new Enemy(-100,230)
 ];
