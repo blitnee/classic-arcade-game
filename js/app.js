@@ -1,3 +1,5 @@
+'use strict';
+
 var Enemy = function(x,y) {
     this.x = x;
     this.y = y;
@@ -84,7 +86,8 @@ Player.prototype.reset = function() {
  * enemy object bounds.
  */
 Player.prototype.checkCollisions = function() {
-    for (var i = 0; i < allEnemies.length; i++) {
+    for (var i = 0, len = 3; i < len; i++) {
+        // allEnemies array length saved for efficiency
         if (this.x < allEnemies[i].x + allEnemies[i].width
             && this.x + this.width > allEnemies[i].x
             && this.y < allEnemies[i].y + allEnemies[i].height
