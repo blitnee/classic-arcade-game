@@ -2,7 +2,8 @@
 
 _A demonstration of object-oriented programming using JavaScript_
 
-Recreated the classic arcade game, Frogger, to demonstrate JavaScript object-oriented programming features.
+##About
+Recreated the classic arcade game, Frogger, to demonstrate JavaScript object-oriented programming features in conjunction with HTML5 Canvas.
 
 
 ##How To Play
